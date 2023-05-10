@@ -1,0 +1,37 @@
+@model List<Dish>
+
+<div class="m-4">
+    @await Html.PartialAsync("_Navbar")
+</div>
+
+<h1 class="text-center">All Dishes</h1>
+<hr>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Dish Name</th>
+            <th>Chef</th>
+            <th>Tastiness</th>
+            <th>Calories</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(Dish dish in Model)
+        {
+            <tr>
+                <td>@dish.DishName</td>
+                <td>@dish.Creator.FirstName @dish.Creator.LastName</td>
+                <td>@dish.Tastiness</td>
+                <td>@dish.Calories</td>
+                <td class="d-flex">
+                    <a asp-action="EditDish" asp-route-id="@dish.DishId" class="btn btn-primary btn-sm">Update</a> |
+                    <form asp-action="DeleteDish" asp-route-id="@dish.DishId" asp-controller="Home" method="post">
+                        <button type="submit" class="btn btn-danger btn-small">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

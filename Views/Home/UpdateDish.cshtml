@@ -1,0 +1,46 @@
+@model ChefsAndDish
+
+<div class="m-4">
+    @await Html.PartialAsync("_Navbar")
+</div>
+
+<h1 class="text-center">Update Dish</h1>
+<hr>
+
+<form asp-action="UpdateDish" asp-controller="Home" method="post">
+    <input type="hidden" asp-for="dish.DishId" />
+    <div class="mb-3">
+        <label asp-for="dish.DishName" class="form-label"></label>
+        <input asp-for="dish.DishName" class="form-control" />
+        <span asp-validation-for="dish.DishName" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="dish.Calories" class="form-label"></label>
+        <input asp-for="dish.Calories" class="form-control" />
+        <span asp-validation-for="dish.Calories" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="dish.ChefId" class="form-label">Chefs</label>
+        <select asp-for="dish.ChefId" class="form-select" >
+    @foreach(Chef chef in Model.chefs)
+{   
+    <option value=@chef.ChefId disabled>@chef.FirstName @chef.LastName</option>
+}
+            
+        </select>
+        <span asp-validation-for="dish.ChefId" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="dish.Tastiness" class="form-label"></label>
+        <select asp-for="dish.Tastiness" class="form-control">
+            <option value=""> Select a rating </option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        <span asp-validation-for="dish.Tastiness" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Update Dish</button>
+</form>

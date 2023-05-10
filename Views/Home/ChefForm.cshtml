@@ -1,0 +1,31 @@
+
+@model Chef
+
+<div class="m-4">
+@await Html.PartialAsync("_Navbar")
+</div>
+<h1 class="text-center">
+    Add a Chef
+</h1>
+<hr>
+
+<form asp-action="CreateChef" asp-controller="Home">
+    <div>
+    <label asp-for="FirstName"></label>
+    <input asp-for="FirstName" class="form-control" />
+    <span asp-validation-for="FirstName"></span>
+    </div>
+    <div>
+        <label asp-for="LastName"></label>
+        <input asp-for="LastName" class="form-control" />
+        <span asp-validation-for="LastName"></span>
+    </div>
+    <div>
+        <label asp-for="DateOfBirth"></label>
+        <input asp-for="DateOfBirth" class="form-control" />
+        <span asp-validation-for="DateOfBirth"></span>
+    </div>
+    <button class="btn btn-success m-2">
+        Add Chef
+    </button>
+</form>

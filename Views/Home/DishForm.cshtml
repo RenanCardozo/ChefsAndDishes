@@ -1,0 +1,52 @@
+@model ChefsAndDish
+
+
+<div class="m-4">
+@await Html.PartialAsync("_Navbar")
+</div>
+<h1 class="text-center">
+    Add a Dish
+</h1>
+<hr>
+
+<form asp-action="CreateDish" asp-controller ="Home" method="post">
+    <div>
+    <label asp-for="dish.DishName"></label>
+    <input asp-for="dish.DishName" class="form-control" />
+    <span asp-validation-for="dish.DishName" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="dish.Calories"></label>
+        <input asp-for="dish.Calories" class="form-control" />
+        <span asp-validation-for="dish.Calories" class="text-danger"></span>
+    </div>
+    <div>
+        <label >Chef's Name</label>
+        <select asp-for="dish.ChefId" class="form-select" >
+    @foreach(Chef chef in Model.chefs)
+{   
+    <option value=@chef.ChefId>@chef.FirstName @chef.LastName</option>
+}
+            
+        </select>
+
+        
+    </div>
+    <div>
+        <label asp-for="dish.Tastiness"></label>
+        <select asp-for="dish.Tastiness" id="" class="form-select">
+            <option hidden value=""></option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        <span asp-validation-for="dish.Tastiness" class="text-danger"></span>
+    </div>
+    <button class="btn btn-success m-2">
+        Add Dish
+    </button>
+</form>
+
+
